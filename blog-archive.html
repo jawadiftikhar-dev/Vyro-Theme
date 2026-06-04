@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        VYRO Journal — Architectural Insights, Spatial Engineering & Design
+        Systems
+    </title>
+    <meta name="description"
+        content="Intellectual perspectives from VYRO Studio, detailing modern digital landmarks, Three.js orchestration, and headless CDN rendering." />
+    <meta name="keywords"
+        content="Creative Agency, Spatial Design, Design Systems, Core Web Vitals, Performance Engineering, Blog" />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="VYRO Journal — Insights from the Edge" />
+    <meta property="og:description"
+        content="Chronicles of premium digital design engineering and spatial systems development." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config & Theme Customization mapped to CSS variables -->
+    <script src="./scripts/config.js"></script>
+
+    <!-- Theme Variables -->
+    <link rel="stylesheet" href="./styles/design-system.css" />
+
+    <!-- Custom Transitions and Crisp CSS -->
+    <link rel="stylesheet" href="./styles/main.css" />
+
+</head>
+
+<body class="bg-agency-bg text-agency-dark font-sans overflow-x-hidden antialiased selection:bg-agency-accent">
+    <!-- PRELOADER SYSTEM -->
+    <div id="preloader"
+        class="fixed inset-0 z-[100] bg-[#121212] flex flex-col justify-between p-8 md:p-16 transition-all duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)]">
+        <div class="flex justify-between items-center text-white/50 text-xs tracking-widest font-mono">
+            <span>VYRO JOURNAL</span>
+            <span>BUILD_SYS_V2.06</span>
+        </div>
+        <div class="my-auto space-y-6 max-w-xl">
+            <div class="font-serif text-5xl md:text-7xl italic text-agency-accent font-light overflow-hidden">
+                <span id="preload-text"
+                    class="block translate-y-full transition-transform duration-[800ms] ease-out">Journal
+                    Insights.</span>
+            </div>
+            <div class="h-[1px] bg-white/10 w-full relative overflow-hidden">
+                <div id="preload-progress"
+                    class="absolute top-0 left-0 h-full bg-agency-accent transition-all duration-[1800ms] ease-out w-0">
+                </div>
+            </div>
+            <div class="flex justify-between text-[10px] font-mono tracking-widest text-white/60">
+                <span>COMPILING SYSTEMS PERSPECTIVES</span>
+                <span id="preload-num">00%</span>
+            </div>
+        </div>
+        <div class="text-white/40 text-[9px] uppercase tracking-[0.2em] flex justify-between">
+            <span>&copy; 2026 VYRO STUDIO</span>
+            <span>VERIFIED FRAMEWORKS ONLY</span>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVIGATION SYSTEM -->
+    <header id="main-header"
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html"
+                class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-agency-accent p-1"
+                aria-label="Vyro Home">
+                <span
+                    class="font-serif text-2xl font-bold tracking-tight text-agency-dark group-hover:text-agency-accent transition-colors">VYRO</span>
+                <span class="w-2 h-2 rounded-full bg-agency-accent animate-pulse"></span>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+                <a href="index.html#philosophy"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Philosophy</a>
+                <a href="index.html#blueprint"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Labs</a>
+                <a href="index.html#services"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Services</a>
+                <a href="index.html#acoustics"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Acoustics</a>
+                <a href="index.html#work"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Portfolio</a>
+                <a href="#"
+                    class="hover-underline-link text-xs font-semibold tracking-wide text-agency-accent transition-colors uppercase">Journal</a>
+                <a href="index.html#calculator"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Estimator</a>
+            </nav>
+
+            <!-- Actions Controls -->
+            <div class="hidden lg:flex items-center gap-6">
+                <!-- Theme Switcher -->
+                <button id="theme-switcher"
+                    class="p-2 border border-agency-border hover:border-agency-accent bg-agency-card text-agency-dark focus:outline-none transition-colors"
+                    aria-label="Toggle Theme">
+                    <i data-lucide="moon" class="w-4 h-4" id="theme-icon"></i>
+                </button>
+
+                <a href="index.html#contact"
+                    class="px-5 py-2.5 bg-agency-dark text-agency-bg hover:bg-agency-accent hover:text-[#121212] font-medium text-xs tracking-widest uppercase transition-all duration-300 rounded-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-agency-dark">
+                    Initiate Project
+                </a>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button id="menu-btn"
+                class="lg:hidden flex flex-col justify-between w-6 h-5 focus:outline-none focus:ring-2 focus:ring-agency-accent z-50"
+                aria-label="Toggle Navigation Menu" aria-expanded="false">
+                <span class="w-full h-0.5 bg-agency-dark transition-transform duration-300" id="bar1"></span>
+                <span class="w-full h-0.5 bg-agency-dark transition-opacity duration-300" id="bar2"></span>
+                <span class="w-full h-0.5 bg-agency-dark transition-transform duration-300" id="bar3"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu Panel -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-agency-bg/98 backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8 -translate-y-full transition-transform duration-500 ease-in-out lg:hidden"
+            aria-hidden="true">
+            <nav class="flex flex-col items-center gap-6" aria-label="Mobile Navigation">
+                <a href="index.html#philosophy"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Philosophy</a>
+                <a href="index.html#blueprint"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Blueprint
+                    Lab</a>
+                <a href="index.html#services"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Services</a>
+                <a href="index.html#acoustics"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Sensory
+                    Acoustics</a>
+                <a href="index.html#work"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Featured
+                    Portfolio</a>
+                <a href="#" class="mobile-nav-link text-2xl font-serif text-agency-accent transition-colors">Journal
+                    Perspectives</a>
+            </nav>
+            <div class="flex items-center gap-4 mt-4">
+                <button id="mobile-theme-switcher"
+                    class="p-3 border border-agency-border bg-agency-card text-agency-dark rounded-none">
+                    <span class="text-xs font-mono uppercase tracking-widest">Toggle Design Theme</span>
+                </button>
+            </div>
+            <a href="index.html#contact"
+                class="mobile-nav-link px-8 py-3 bg-agency-dark text-agency-bg font-medium text-sm tracking-widest uppercase hover:bg-agency-accent hover:text-[#121212] transition-all rounded-none">
+                Initiate Project
+            </a>
+        </div>
+    </header>
+
+    <!-- FEATURED EDITORIAL HEADER BANNER -->
+    <section id="featured-article" class="relative pt-32 pb-16 px-6 md:px-12 bg-agency-bg border-b border-agency-border"
+        aria-labelledby="featured-article-title">
+        <!-- Breadcrumbs -->
+        <div class="flex items-center gap-2 mb-8 font-mono text-[10px] tracking-widest uppercase text-agency-slate">
+            <a href="index.html" class="hover:text-agency-accent transition-colors">Vyro Core</a>
+            <span>/</span>
+            <span class="text-agency-dark font-semibold">Journal Insights</span>
+        </div>
+    </section>
+
+    <!-- JOURNAL JOURNAL FILTERS & SEARCH MODULE -->
+    <section id="insights-catalog" class="py-16 bg-agency-card border-b border-agency-border">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <!-- Search and Filter Grid Header -->
+            <div
+                class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 pb-12 border-b border-agency-border">
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2" role="group" aria-label="Filter Journal Entries">
+                    <button
+                        class="filter-btn active px-4 py-2 text-xs uppercase font-semibold tracking-wider bg-agency-dark text-agency-bg border border-agency-dark transition-all duration-300 font-mono rounded-none"
+                        data-filter="all">
+                        All Records
+                    </button>
+                    <button
+                        class="filter-btn px-4 py-2 text-xs uppercase font-semibold tracking-wider border border-agency-border text-agency-dark/70 hover:border-agency-dark bg-agency-bg transition-all duration-300 font-mono rounded-none"
+                        data-filter="technical">
+                        Technical
+                    </button>
+                    <button
+                        class="filter-btn px-4 py-2 text-xs uppercase font-semibold tracking-wider border border-agency-border text-agency-dark/70 hover:border-agency-dark bg-agency-bg transition-all duration-300 font-mono rounded-none"
+                        data-filter="aesthetic">
+                        Aesthetics
+                    </button>
+                    <button
+                        class="filter-btn px-4 py-2 text-xs uppercase font-semibold tracking-wider border border-agency-border text-agency-dark/70 hover:border-agency-dark bg-agency-bg transition-all duration-300 font-mono rounded-none"
+                        data-filter="performance">
+                        Performance
+                    </button>
+                </div>
+
+                <!-- Inline Text Search Field -->
+                <div class="relative w-full max-w-sm">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-agency-slate/50">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </span>
+                    <input type="text" id="journal-search" placeholder="Query system insights..."
+                        aria-label="Search insights"
+                        class="w-full pl-10 pr-4 py-3 bg-agency-bg border border-agency-border text-agency-dark focus:border-agency-accent focus:outline-none rounded-none text-xs font-mono tracking-wider uppercase" />
+                </div>
+            </div>
+
+            <!-- DYNAMIC ARTICLES INDEX GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-16" id="journal-grid">
+                <!-- Card 1 -->
+                <article
+                    class="journal-card relative overflow-hidden bg-agency-bg border border-agency-border p-6 group cursor-pointer transition-all duration-500 hover:border-agency-accent"
+                    onclick="location.href = 'blog.html'" data-category="technical" data-index="0">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border/20">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[750ms] group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-1.webp');
+                "></div>
+                        <span
+                            class="absolute top-4 left-4 px-2.5 py-1 bg-agency-card text-agency-dark text-[9px] font-mono tracking-widest font-bold border border-agency-border uppercase">Technical</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-agency-accent mb-3">
+                        <span>June 2026</span>
+                        <span>5 Min Read</span>
+                    </div>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors">
+                        The Future of Spatial Interface Logic and Intelligent Experiences
+                    </h3>
+                    <p class="text-xs text-agency-slate font-light leading-relaxed mb-6">
+                        Evaluating core deployment factors when establishing responsive visual configurations to enhance
+                        usability and performance.
+                    </p>
+                    <div
+                        class="flex justify-between items-center text-[10px] font-mono text-agency-dark/70 group-hover:text-agency-dark transition-colors border-t border-agency-border/60 pt-4">
+                        <span>Read Blueprint Log</span>
+                        <i data-lucide="arrow-right"
+                            class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article
+                    class="journal-card relative overflow-hidden bg-agency-bg border border-agency-border p-6 group cursor-pointer transition-all duration-500 hover:border-agency-accent"
+                    onclick="location.href = 'blog.html'" data-category="aesthetic" data-index="1">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border/20">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[750ms] group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-2.webp');
+                "></div>
+                        <span
+                            class="absolute top-4 left-4 px-2.5 py-1 bg-agency-card text-agency-dark text-[9px] font-mono tracking-widest font-bold border border-agency-border uppercase">Aesthetics</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-agency-accent mb-3">
+                        <span>May 2026</span>
+                        <span>6 Min Read</span>
+                    </div>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors">
+                        Finding Restraint in Design Schemes for User Experiences
+                    </h3>
+                    <p class="text-xs text-agency-slate font-light leading-relaxed mb-6">
+                        Why minimal systems retain and focus user attention better than complex templates while
+                        maintaining clarity & elegance.
+                    </p>
+                    <div
+                        class="flex justify-between items-center text-[10px] font-mono text-agency-dark/70 group-hover:text-agency-dark transition-colors border-t border-agency-border/60 pt-4">
+                        <span>Read Blueprint Log</span>
+                        <i data-lucide="arrow-right"
+                            class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article
+                    class="journal-card relative overflow-hidden bg-agency-bg border border-agency-border p-6 group cursor-pointer transition-all duration-500 hover:border-agency-accent"
+                    onclick="location.href = 'blog.html'" data-category="performance" data-index="2">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border/20">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[750ms] group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-3.webp');
+                "></div>
+                        <span
+                            class="absolute top-4 left-4 px-2.5 py-1 bg-agency-card text-agency-dark text-[9px] font-mono tracking-widest font-bold border border-agency-border uppercase">Performance</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-agency-accent mb-3">
+                        <span>April 2026</span>
+                        <span>4 Min Read</span>
+                    </div>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors">
+                        Headless APIs and Content Structuring for Digital Ecosystems
+                    </h3>
+                    <p class="text-xs text-agency-slate font-light leading-relaxed mb-6">
+                        How edge CDN pre-rendering models protect overall Core Web Vitals parameters by reducing latency
+                        and optimizing content.
+                    </p>
+                    <div
+                        class="flex justify-between items-center text-[10px] font-mono text-agency-dark/70 group-hover:text-agency-dark transition-colors border-t border-agency-border/60 pt-4">
+                        <span>Read Blueprint Log</span>
+                        <i data-lucide="arrow-right"
+                            class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article
+                    class="journal-card relative overflow-hidden bg-agency-bg border border-agency-border p-6 group cursor-pointer transition-all duration-500 hover:border-agency-accent"
+                    onclick="location.href = 'blog.html'" data-category="technical" data-index="3">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border/20">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[750ms] group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-4.webp');
+                "></div>
+                        <span
+                            class="absolute top-4 left-4 px-2.5 py-1 bg-agency-card text-agency-dark text-[9px] font-mono tracking-widest font-bold border border-agency-border uppercase">Technical</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-agency-accent mb-3">
+                        <span>March 2026</span>
+                        <span>9 Min Read</span>
+                    </div>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors">
+                        Understanding Haptic Spatial Audio Logic
+                    </h3>
+                    <p class="text-xs text-agency-slate font-light leading-relaxed mb-6">
+                        Designing multi-sensory user response curves with
+                        performance-balanced web synthesizer layers.
+                    </p>
+                    <div
+                        class="flex justify-between items-center text-[10px] font-mono text-agency-dark/70 group-hover:text-agency-dark transition-colors border-t border-agency-border/60 pt-4">
+                        <span>Read Blueprint Log</span>
+                        <i data-lucide="arrow-right"
+                            class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article
+                    class="journal-card relative overflow-hidden bg-agency-bg border border-agency-border p-6 group cursor-pointer transition-all duration-500 hover:border-agency-accent"
+                    onclick="location.href = 'blog.html'" data-category="aesthetic" data-index="4">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border/20">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[750ms] group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-5.webp');
+                "></div>
+                        <span
+                            class="absolute top-4 left-4 px-2.5 py-1 bg-agency-card text-agency-dark text-[9px] font-mono tracking-widest font-bold border border-agency-border uppercase">Aesthetics</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-agency-accent mb-3">
+                        <span>February 2026</span>
+                        <span>5 Min Read</span>
+                    </div>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors">
+                        Design Tokens: Standardizing Scale Trees
+                    </h3>
+                    <p class="text-xs text-agency-slate font-light leading-relaxed mb-6">
+                        How standardizing border, rounding, and gap size values saves
+                        hundreds of styling lines.
+                    </p>
+                    <div
+                        class="flex justify-between items-center text-[10px] font-mono text-agency-dark/70 group-hover:text-agency-dark transition-colors border-t border-agency-border/60 pt-4">
+                        <span>Read Blueprint Log</span>
+                        <i data-lucide="arrow-right"
+                            class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article
+                    class="journal-card relative overflow-hidden bg-agency-bg border border-agency-border p-6 group cursor-pointer transition-all duration-500 hover:border-agency-accent"
+                    onclick="location.href = 'blog.html'" data-category="performance" data-index="5">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border/20">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[750ms] group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-6.webp');
+                "></div>
+                        <span
+                            class="absolute top-4 left-4 px-2.5 py-1 bg-agency-card text-agency-dark text-[9px] font-mono tracking-widest font-bold border border-agency-border uppercase">Performance</span>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-agency-accent mb-3">
+                        <span>January 2026</span>
+                        <span>7 Min Read</span>
+                    </div>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors">
+                        The Core Web Vitals Optimization Playbook
+                    </h3>
+                    <p class="text-xs text-agency-slate font-light leading-relaxed mb-6">
+                        Techniques used to reach continuous perfect performance markers
+                        across desktop and mobile devices.
+                    </p>
+                    <div
+                        class="flex justify-between items-center text-[10px] font-mono text-agency-dark/70 group-hover:text-agency-dark transition-colors border-t border-agency-border/60 pt-4">
+                        <span>Read Blueprint Log</span>
+                        <i data-lucide="arrow-right"
+                            class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Zero State Search Feedback -->
+            <div id="search-zero-state" class="hidden text-center py-20">
+                <span class="text-xs uppercase font-mono tracking-widest text-agency-slate block mb-2">No matching
+                    entries found</span>
+                <p class="text-agency-slate font-light max-w-sm mx-auto text-sm">
+                    Refine your query matrices or clear categories to expose all catalog
+                    archives.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section class="py-24 md:py-32 px-6 md:px-12 bg-agency-bg reveal-on-scroll animate-delay"
+        aria-label="Newsletter subscription">
+        <div class="max-w-4xl mx-auto border border-agency-border p-8 md:p-16 bg-agency-card text-center">
+            <span
+                class="text-xs uppercase font-semibold tracking-[0.25em] text-agency-accent block mb-3 font-mono">Newsletter
+                Syndicate</span>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-agency-dark mb-6">
+                Receive Strategic System Insights
+            </h2>
+            <p class="text-agency-slate font-light leading-relaxed max-w-lg mx-auto mb-10">
+                Join a curated circle of digital leaders receiving spatial and visual
+                engineering analysis twice a month. Zero promotional filler.
+            </p>
+
+            <form id="newsletter-form" class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                <input type="email" id="news-email" required placeholder="name@corporation.com"
+                    aria-label="Work Email Address"
+                    class="flex-1 px-4 py-3 bg-agency-card border border-agency-border text-agency-dark focus:border-agency-accent focus:outline-none rounded-none text-sm font-medium" />
+                <button type="submit"
+                    class="px-8 py-3 bg-agency-dark text-agency-bg hover:bg-agency-accent hover:text-[#121212] uppercase font-semibold text-xs tracking-wider transition-all duration-300 rounded-none font-mono">
+                    Subscribe
+                </button>
+            </form>
+            <div id="newsletter-feedback" class="mt-4 text-xs font-mono font-medium tracking-wide hidden"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#121212] text-white pt-24 pb-12 px-6 md:px-12 border-t border-neutral-800"
+        aria-label="Footer Navigation">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-20 border-b border-neutral-800">
+                <!-- Branding column -->
+                <div class="lg:col-span-2">
+                    <span class="font-serif text-3xl font-bold tracking-tight text-white mb-6 block">VYRO</span>
+                    <p class="text-sm text-neutral-400 font-light max-w-xs leading-relaxed mb-8">
+                        Orchestrating premium digital interfaces and robust visual
+                        corporate identities with comprehensive system validation
+                        parameters.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" aria-label="LinkedIn Profile"
+                            class="w-10 h-10 border border-neutral-800 flex items-center justify-center hover:border-agency-accent text-neutral-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-4 h-4">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect width="4" height="12" x="2" y="9"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="X Profile"
+                            class="w-10 h-10 border border-neutral-800 flex items-center justify-center hover:border-agency-accent text-neutral-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="currentColor" class="w-4 h-4">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram Profile"
+                            class="w-10 h-10 border border-neutral-800 flex items-center justify-center hover:border-agency-accent text-neutral-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-4 h-4">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 Links -->
+                <div>
+                    <span
+                        class="block text-xs uppercase tracking-widest text-agency-accent font-semibold mb-6">Directory</span>
+                    <ul class="space-y-3 text-sm text-neutral-400 font-light">
+                        <li>
+                            <a href="index.html#philosophy" class="hover:text-white transition-colors">Manifesto
+                                Philosophy</a>
+                        </li>
+                        <li>
+                            <a href="index.html#services" class="hover:text-white transition-colors">Our
+                                Capabilities</a>
+                        </li>
+                        <li>
+                            <a href="index.html#acoustics" class="hover:text-white transition-colors">Acoustics Lab</a>
+                        </li>
+                        <li>
+                            <a href="index.html#work" class="hover:text-white transition-colors">Portfolio Archives</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 Links -->
+                <div>
+                    <span
+                        class="block text-xs uppercase tracking-widest text-agency-accent font-semibold mb-6">Estimations</span>
+                    <ul class="space-y-3 text-sm text-neutral-400 font-light">
+                        <li>
+                            <a href="index.html#calculator" class="hover:text-white transition-colors">Cost Estimator
+                                Tool</a>
+                        </li>
+                        <li>
+                            <a href="index.html#blueprints-catalog" class="hover:text-white transition-colors">System
+                                Schemas</a>
+                        </li>
+                        <li>
+                            <a href="index.html#faq" class="hover:text-white transition-colors">Frequent FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 Info -->
+                <div>
+                    <span
+                        class="block text-xs uppercase tracking-widest text-agency-accent font-semibold mb-6">Governance</span>
+                    <ul class="space-y-3 text-sm text-neutral-400 font-light">
+                        <li>
+                            <a href="#" class="hover:text-white transition-colors">Terms of Alliance</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-white transition-colors">Privacy Systems</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:text-white transition-colors">Access Guidelines</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lower Footer Bar -->
+            <div
+                class="pt-8 flex flex-col md:flex-row md:justify-between md:items-center gap-6 text-xs text-neutral-500 font-mono">
+               <div>
+                    &copy; <span id="year-target">2026</span> Vyro Creative
+                    Architecture by <a href="https://jawadiftikhar.com" target="_blank">Jawad Iftikhar</a> All system structures reserved globally.
+                </div>
+                <div class="flex gap-4">
+                    <span>Performance Rating Score: 9.9/10</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK-TO-TOP UTILITY BUTTON -->
+    <button id="back-to-top-btn"
+        class="fixed bottom-8 right-8 w-12 h-12 border border-agency-border bg-agency-card text-agency-dark shadow-xl opacity-0 translate-y-6 pointer-events-none transition-all duration-300 flex items-center justify-center focus:outline-none z-40"
+        aria-label="Return to Navigation Top">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- SIDE-DRAWER ARTICLE WRITER VIEWER (RICH READING VIEW) -->
+    <div id="case-drawer"
+        class="fixed inset-y-0 right-0 z-50 w-full max-w-2xl bg-agency-bg border-l border-agency-border shadow-2xl translate-x-full transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-y-auto"
+        aria-hidden="true">
+        <!-- Close Drawer Button Header -->
+        <div
+            class="flex justify-between items-center p-6 border-b border-agency-border bg-agency-card sticky top-0 z-20">
+            <span class="text-[10px] font-mono tracking-widest text-agency-accent font-bold"
+                id="drawer-system-label">READING_ENGINE_SESSION</span>
+            <button id="close-drawer-btn"
+                class="p-2 border border-agency-border hover:border-agency-accent text-agency-dark transition-colors focus:outline-none"
+                aria-label="Close article reader drawer">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Content Container (Dynamically Rendered Article Body) -->
+        <div class="p-8 md:p-12 space-y-8" id="drawer-dynamic-content">
+            <!-- Populated dynamically via JS -->
+        </div>
+    </div>
+    <!-- Side-drawer backdrop overlay -->
+    <div id="drawer-overlay"
+        class="fixed inset-0 z-40 bg-agency-dark/30 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500">
+    </div>
+
+    <!-- Core & Foundation -->
+    <script src="./scripts/core.js"></script>
+    <!-- Modules & Interactions -->
+    <script src="./scripts/modules.js"></script>
+    <!-- Filters & Search Queries -->
+    <script src="./scripts/filters.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Future of Spatial Interface Logic & Intelligent Experiences — VYRO Journal</title>
+    <meta name="description"
+        content="Deep-dive technical perspective on orchestrating luxury, high-performance spatial graphics directly over native viewports without WebGL engine latency." />
+    <meta name="keywords"
+        content="Creative Engineering, Spatial UI, WebGL Optimization, Three.js, Front-end Architecture" />
+
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Future of Spatial Interface Logic & Intelligent Experiences" />
+    <meta property="og:description"
+        content="Orchestrating high-performance, immersive interfaces with absolute structural precision." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+    <!-- Tailwind Config & Theme Customization mapped to CSS variables -->
+    <script src="./scripts/config.js"></script>
+
+    <!-- Theme Variables -->
+    <link rel="stylesheet" href="./styles/design-system.css" />
+
+    <!-- Custom Transitions and Crisp CSS -->
+    <link rel="stylesheet" href="./styles/main.css" />
+
+</head>
+
+<body class="bg-agency-bg text-agency-dark font-sans overflow-x-hidden antialiased selection:bg-agency-accent">
+    <!-- PRELOADER SYSTEM -->
+    <div id="preloader"
+        class="fixed inset-0 z-[100] bg-[#121212] flex flex-col justify-between p-8 md:p-16 transition-all duration-[1000ms] ease-[cubic-bezier(0.85,0,0.15,1)]">
+        <div class="flex justify-between items-center text-white/50 text-xs tracking-widest font-mono">
+            <span>VYRO CHRONICLES</span>
+            <span>BUILD_SYS_V2.06</span>
+        </div>
+        <div class="my-auto space-y-6 max-w-xl">
+            <div class="font-serif text-5xl md:text-7xl italic text-agency-accent font-light overflow-hidden">
+                <span id="preload-text"
+                    class="block translate-y-full transition-transform duration-[800ms] ease-out">Orchestration.</span>
+            </div>
+            <div class="h-[1px] bg-white/10 w-full relative overflow-hidden">
+                <div id="preload-progress"
+                    class="absolute top-0 left-0 h-full bg-agency-accent transition-all duration-[1800ms] ease-out w-0">
+                </div>
+            </div>
+            <div class="flex justify-between text-[10px] font-mono tracking-widest text-white/60">
+                <span>LOADING INTEL ARCHIVES</span>
+                <span id="preload-num">00%</span>
+            </div>
+        </div>
+        <div class="text-white/40 text-[9px] uppercase tracking-[0.2em] flex justify-between">
+            <span>&copy; 2026 VYRO STUDIO</span>
+            <span>VERIFIED FRAMEWORKS ONLY</span>
+        </div>
+    </div>
+
+    <!-- HEADER / NAVIGATION SYSTEM -->
+    <header id="main-header"
+        class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 py-5 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html"
+                class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-agency-accent p-1"
+                aria-label="Vyro Home">
+                <span
+                    class="font-serif text-2xl font-bold tracking-tight text-agency-dark group-hover:text-agency-accent transition-colors">VYRO</span>
+                <span class="w-2 h-2 rounded-full bg-agency-accent animate-pulse"></span>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+                <a href="index.html#philosophy"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Philosophy</a>
+                <a href="index.html#blueprint"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Labs</a>
+                <a href="index.html#services"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Services</a>
+                <a href="index.html#acoustics"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Acoustics</a>
+                <a href="index.html#work"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Portfolio</a>
+                <a href="#"
+                    class="hover-underline-link text-xs font-semibold tracking-wide text-agency-accent transition-colors uppercase">Journal</a>
+                <a href="index.html#calculator"
+                    class="hover-underline-link text-xs font-medium tracking-wide text-agency-dark/80 hover:text-agency-dark transition-colors uppercase">Estimator</a>
+            </nav>
+
+            <!-- Actions Controls -->
+            <div class="hidden lg:flex items-center gap-6">
+                <!-- Theme Switcher -->
+                <button id="theme-switcher"
+                    class="p-2 border border-agency-border hover:border-agency-accent bg-agency-card text-agency-dark focus:outline-none transition-colors"
+                    aria-label="Toggle Theme">
+                    <i data-lucide="moon" class="w-4 h-4" id="theme-icon"></i>
+                </button>
+
+                <a href="index.html#contact"
+                    class="px-5 py-2.5 bg-agency-dark text-agency-bg hover:bg-agency-accent hover:text-[#121212] font-medium text-xs tracking-widest uppercase transition-all duration-300 rounded-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-agency-dark">
+                    Initiate Project
+                </a>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button id="menu-btn"
+                class="lg:hidden flex flex-col justify-between w-6 h-5 focus:outline-none focus:ring-2 focus:ring-agency-accent z-50"
+                aria-label="Toggle Navigation Menu" aria-expanded="false">
+                <span class="w-full h-0.5 bg-agency-dark transition-transform duration-300" id="bar1"></span>
+                <span class="w-full h-0.5 bg-agency-dark transition-opacity duration-300" id="bar2"></span>
+                <span class="w-full h-0.5 bg-agency-dark transition-transform duration-300" id="bar3"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu Panel -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-agency-bg/98 backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8 -translate-y-full transition-transform duration-500 ease-in-out lg:hidden"
+            aria-hidden="true">
+            <nav class="flex flex-col items-center gap-6" aria-label="Mobile Navigation">
+                <a href="index.html#philosophy"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Philosophy</a>
+                <a href="index.html#blueprint"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Blueprint
+                    Lab</a>
+                <a href="index.html#services"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Services</a>
+                <a href="index.html#acoustics"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Sensory
+                    Acoustics</a>
+                <a href="index.html#work"
+                    class="mobile-nav-link text-2xl font-serif text-agency-dark hover:text-agency-accent transition-colors">Featured
+                    Portfolio</a>
+                <a href="#" class="mobile-nav-link text-2xl font-serif text-agency-accent transition-colors">Journal
+                    Perspectives</a>
+            </nav>
+            <div class="flex items-center gap-4 mt-4">
+                <button id="mobile-theme-switcher"
+                    class="p-3 border border-agency-border bg-agency-card text-agency-dark rounded-none">
+                    <span class="text-xs font-mono uppercase tracking-widest">Toggle Design Theme</span>
+                </button>
+            </div>
+            <a href="index.html#contact"
+                class="mobile-nav-link px-8 py-3 bg-agency-dark text-agency-bg font-medium text-sm tracking-widest uppercase hover:bg-agency-accent hover:text-[#121212] transition-all rounded-none">
+                Initiate Project
+            </a>
+        </div>
+    </header>
+
+    <!-- CINEMATIC ARTICLE HERO BANNER -->
+    <section id="article-hero" class="relative pt-32 pb-16 px-6 md:px-12 bg-agency-bg border-b border-agency-border">
+        <!-- Floating background vectors -->
+        <div class="absolute top-20 right-[-10%] w-[500px] h-[500px] rounded-full bg-agency-accentLight blur-3xl animate-float"
+            style="animation-delay: 0s"></div>
+        <div
+            class="absolute inset-0 bg-[radial-gradient(var(--border-color)_1px,transparent_1px)] [background-size:32px_32px] opacity-70 pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto w-full relative z-10 text-center">
+            <!-- Article Meta Breadcrumb -->
+            <div
+                class="flex items-center justify-center gap-2 mb-8 font-mono text-[10px] tracking-widest uppercase text-agency-slate">
+                <a href="index.html" class="hover:text-agency-accent transition-colors">Vyro Core</a>
+                <span>/</span>
+                <span class="text-agency-dark font-semibold">Technical analysis</span>
+            </div>
+
+            <!-- Title -->
+            <h1
+                class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-agency-dark tracking-tight mb-8">
+                The Future of <span class="text-agency-slate italic font-normal">Spatial Interface</span> Logic &
+                Intelligent Experiences.
+            </h1>
+
+            <!-- Executive Sub-Thesis Sentence -->
+            <p
+                class="text-lg md:text-xl text-agency-slate max-w-3xl mx-auto mb-10 leading-relaxed font-light font-serif italic">
+                "Exploring the calculations required to construct lightweight, hardware-independent geometric visual
+                layouts directly in browser viewports."
+            </p>
+
+            <!-- Metadata parameters -->
+            <div
+                class="flex flex-wrap items-center justify-center gap-8 border-y border-agency-border py-6 font-mono text-xs text-agency-slate">
+                <div class="text-center md:text-left">
+                    <span class="block text-[8px] uppercase tracking-wider text-neutral-400">AUTHOR</span>
+                    <span class="text-agency-dark font-semibold">Marcus Thorne</span>
+                </div>
+                <div class="w-[1px] h-8 bg-agency-border hidden md:block"></div>
+                <div class="text-center md:text-left">
+                    <span class="block text-[8px] uppercase tracking-wider text-neutral-400">PUBLISHED</span>
+                    <span class="text-agency-dark font-semibold">June 2026</span>
+                </div>
+                <div class="w-[1px] h-8 bg-agency-border hidden md:block"></div>
+                <div class="text-center md:text-left">
+                    <span class="block text-[8px] uppercase tracking-wider text-neutral-400">READ TIME</span>
+                    <span class="text-agency-dark font-semibold">8 Min Read</span>
+                </div>
+                <div class="w-[1px] h-8 bg-agency-border hidden md:block"></div>
+                <div class="text-center md:text-left">
+                    <span class="block text-[8px] uppercase tracking-wider text-neutral-400">SLA INDEX</span>
+                    <span class="text-emerald-500 font-semibold font-mono">100% Paint [OK]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMMERSIVE ARTICLE COVER GRAPHIC -->
+    <section class="px-6 md:px-12 bg-agency-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="border border-agency-border bg-agency-card p-4 shadow-2xl relative">
+                <div class="absolute inset-6 border border-dashed border-agency-border/60 pointer-events-none z-10">
+                </div>
+                <div class="aspect-[21/9] w-full bg-neutral-900 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] hover:scale-105"
+                        style="background-image: url('./assets/journal-insights-1.webp');">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#121212]/50 to-transparent pointer-events-none">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TWO-COLUMN ARTICLE STRUCTURE & TELEMETRY SIDEBAR -->
+    <section id="article-body" class="py-24 px-6 md:px-12 bg-agency-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+                <!-- Main Content Column (Left Side: 8 Columns) -->
+                <article class="lg:col-span-8 space-y-12">
+
+                    <!-- Section 1: Intro -->
+                    <div class="space-y-6">
+                        <span
+                            class="font-mono text-[10px] text-agency-accent font-bold uppercase tracking-widest block">01
+                            / The Rendering Crisis</span>
+                        <h2 class="font-serif text-3xl font-bold text-agency-dark">
+                            The Overloaded Browser Viewport
+                        </h2>
+                        <p class="font-light text-base leading-relaxed text-agency-slate">
+                            Modern web standards are collapsing under the cumulative weight of redundant layout
+                            computations. As frontend software frameworks scale in complexity, consumer viewports suffer
+                            from dynamic rendering latency, unexpected frame skips, and hardware heating.
+                        </p>
+                        <p class="font-light text-base leading-relaxed text-agency-slate">
+                            At VYRO, we argue that layout complexity must not dictate viewport latency. Immersive 3D
+                            environments and cinematic motion behaviors should run natively on mobile hardware without
+                            requiring heavy external asset loading payloads.
+                        </p>
+                    </div>
+
+                    <!-- Blockquote -->
+                    <div class="p-8 border-l-2 border-agency-accent bg-agency-card relative">
+                        <i data-lucide="quote" class="absolute top-4 right-4 w-12 h-12 text-agency-accent/10"></i>
+                        <p class="font-serif text-xl italic leading-relaxed text-agency-dark font-light mb-4">
+                            "Elegant interfaces must behave like luxury mechanical watchworks: completely intricate in
+                            configuration, yet running with absolute, effortless visual logic."
+                        </p>
+                        <span
+                            class="font-mono text-[10px] text-agency-accent uppercase tracking-widest block font-bold">—
+                            Marcus Thorne, Principal Director</span>
+                    </div>
+
+                    <!-- Section 2: Mathematical Formulations -->
+                    <div class="space-y-6">
+                        <span
+                            class="font-mono text-[10px] text-agency-accent font-bold uppercase tracking-widest block">02
+                            / Mathematical Architecture</span>
+                        <h2 class="font-serif text-3xl font-bold text-agency-dark">
+                            Establishing Shader Constraint Calculations
+                        </h2>
+                        <p class="font-light text-base leading-relaxed text-agency-slate">
+                            By bypassing standard, pre-built canvas dependencies, we map raw spatial transformations
+                            straight onto GPU threads. This isolates rendering calculations from main-thread script
+                            execution and guarantees fluid animations under load.
+                        </p>
+
+                        <!-- Core Math Specifications -->
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-agency-card border border-agency-border p-6 my-6">
+                            <div>
+                                <span
+                                    class="block text-[9px] uppercase tracking-wider text-agency-slate font-mono">MATRIX
+                                    RATIO BOUND</span>
+                                <span class="text-lg font-serif font-bold text-agency-dark">3.14159 / VPX</span>
+                            </div>
+                            <div>
+                                <span
+                                    class="block text-[9px] uppercase tracking-wider text-agency-slate font-mono">THREAD
+                                    COMPRESSIVITY</span>
+                                <span class="text-lg font-serif font-bold text-agency-dark">Zero Overhead
+                                    [Locked]</span>
+                            </div>
+                        </div>
+
+                        <p class="font-light text-base leading-relaxed text-agency-slate">
+                            By utilizing custom transformation matrices, we maintain absolute coordinates relative to
+                            the client pointer vector. Notice the code outline below, demonstrating our lightweight
+                            configuration module.
+                        </p>
+                    </div>
+
+                    <!-- Code Syntax Snippet with live Copy button -->
+                    <div
+                        class="border border-agency-border bg-[#121212] p-6 text-green-400 font-mono text-xs shadow-xl rounded-none">
+                        <div
+                            class="flex justify-between items-center pb-4 border-b border-neutral-800 mb-4 text-neutral-400 text-[10px]">
+                            <span>Vyro_spatial_transformation.ts</span>
+                            <button id="copy-code-btn"
+                                class="flex items-center gap-1.5 hover:text-white transition-colors focus:outline-none">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Code
+                            </button>
+                        </div>
+                        <pre class="overflow-x-auto" id="code-snippet-block"><code>const calculateViewportMatrix = (x: number, y: number, bounds: DOMRect) => {
+  const rotationScaleX = ((y - bounds.top) / bounds.height - 0.5) * 20;
+  const rotationScaleY = ((x - bounds.left) / bounds.width - 0.5) * -20;
+  
+  return {
+    transform: `rotateX(\${rotationScaleX}deg) rotateY(\${rotationScaleY}deg)`,
+    telemetry: { rotX: rotationScaleX.toFixed(1), rotY: rotationScaleY.toFixed(1) }
+  };
+};</code></pre>
+                    </div>
+
+                    <!-- Section 3: Performance Audit Targets -->
+                    <div class="space-y-6">
+                        <span
+                            class="font-mono text-[10px] text-agency-accent font-bold uppercase tracking-widest block">03
+                            / Auditable Metrics</span>
+                        <h2 class="font-serif text-3xl font-bold text-agency-dark">
+                            Validating Performance to Secure Organic Conversion
+                        </h2>
+                        <p class="font-light text-base leading-relaxed text-agency-slate">
+                            Visual beauty remains hollow if search index crawlers encounter payload issues. We
+                            pre-render our static structures at the distributed CDN edge, achieving lightning-fast
+                            loading markers globally.
+                        </p>
+                    </div>
+
+                </article>
+
+                <!-- Interactive Sidebar Specs Column (Right Side: 4 Columns) -->
+                <aside class="lg:col-span-4 space-y-8 lg:sticky lg:top-28">
+                    <!-- Interactive Telemetry Dashboard widget -->
+                    <div class="border border-agency-border bg-agency-card p-6 shadow-xl space-y-6">
+                        <div class="flex justify-between items-center pb-4 border-b border-agency-border">
+                            <span
+                                class="text-[9px] font-mono tracking-widest text-agency-slate font-bold uppercase">LIVE_TRANSFORM_TELEMETRY</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        </div>
+
+                        <!-- Real-time dynamic stats indicators -->
+                        <div class="space-y-4 font-mono text-xs">
+                            <div class="flex justify-between items-center">
+                                <span class="text-agency-slate">SIMULATED ROTATION X:</span>
+                                <span id="telemetry-rot-x" class="font-bold text-agency-dark">20.0°</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-agency-slate">SIMULATED ROTATION Y:</span>
+                                <span id="telemetry-rot-y" class="font-bold text-agency-dark">45.0°</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-agency-slate">RENDER FRAME RATE:</span>
+                                <span class="font-bold text-emerald-500">60 FPS STATIC</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-agency-slate">DATA BUNDLE WEIGHT:</span>
+                                <span id="telemetry-bundle" class="font-bold text-agency-accent">4.8 KB</span>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic slider control -->
+                        <div class="space-y-2 border-t border-agency-border pt-4">
+                            <div class="flex justify-between text-[10px] font-mono font-semibold text-agency-dark">
+                                <span>SIMULATE DATA PAYLOAD</span>
+                                <span id="payload-display-val" class="text-agency-accent">4.8 KB</span>
+                            </div>
+                            <input type="range" id="payload-slider" min="1" max="100" value="24"
+                                class="w-full accent-agency-accent cursor-pointer bg-agency-bg h-1.5 rounded-none" />
+                        </div>
+                    </div>
+
+                    <!-- Client SLA Blueprint summary card -->
+                    <div class="border border-agency-border bg-agency-card p-6">
+                        <span
+                            class="text-[9px] font-mono tracking-widest text-agency-accent font-bold uppercase block mb-4">SLA
+                            INTEGRITY REPORT</span>
+                        <p class="text-xs text-agency-slate leading-relaxed font-light mb-4">
+                            Every article inside the Vyro Syndicate represents an audited development standard tested
+                            continuously across physical viewport display parameters.
+                        </p>
+                        <a href="index.html#contact"
+                            class="text-xs font-mono font-semibold hover-underline-link text-agency-dark uppercase block w-max">
+                            Request Architecture Handshake &rarr;
+                        </a>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- "RELATED ARCHIVES" CHRONICLES SECTION -->
+    <section class="py-24 md:py-32 px-6 md:px-12 bg-agency-card reveal-on-scroll" aria-labelledby="insights-heading">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-4">
+                <div>
+                    <span
+                        class="text-xs uppercase font-semibold tracking-[0.25em] text-agency-accent block mb-3 font-mono">Related
+                        Chronology</span>
+                    <h2 id="related-heading" class="font-serif text-3xl md:text-4xl font-bold text-agency-dark">
+                        Further Chronicles
+                    </h2>
+                </div>
+                <a href="blog-archive.html"
+                    class="text-xs uppercase tracking-widest text-agency-dark hover:text-agency-accent transition-colors font-semibold font-mono">
+                    Explore Showcase Grid &rarr;
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Post 1 -->
+
+                <article class="group cursor-pointer" onclick="location.href='blog.html'">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-1.webp');
+                "></div>
+                    </div>
+                    <span
+                        class="text-xs text-agency-accent font-semibold uppercase tracking-wider block mb-2 font-mono">Technical
+                        Analysis</span>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors font-semibold">
+                        The Future of Spatial Interface Logic
+                    </h3>
+                    <p class="text-sm text-agency-slate font-light leading-relaxed">
+                        Evaluating core deployment factors when establishing responsive
+                        visual configurations.
+                    </p>
+                </article>
+
+                <!-- Post 2 -->
+
+                <article class="group cursor-pointer" onclick="location.href='blog.html'">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-2.webp');
+                "></div>
+                    </div>
+                    <span
+                        class="text-xs text-agency-accent font-semibold uppercase tracking-wider block mb-2 font-mono">Aesthetic
+                        Strategy</span>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors font-semibold">
+                        Finding Restraint in Design Schemes
+                    </h3>
+                    <p class="text-sm text-agency-slate font-light leading-relaxed">
+                        Why minimal systems retain and focus user attention better than
+                        complex templates.
+                    </p>
+                </article>
+
+                <!-- Post 3 -->
+
+                <article class="group cursor-pointer" onclick="location.href='blog.html'">
+                    <div
+                        class="aspect-video w-full bg-agency-accentLight relative overflow-hidden mb-6 border border-agency-border">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                            style="
+                  background-image: url('./assets/journal-insights-3.webp');
+                "></div>
+                    </div>
+                    <span
+                        class="text-xs text-agency-accent font-semibold uppercase tracking-wider block mb-2 font-mono">Speed
+                        Optimization</span>
+                    <h3
+                        class="font-serif text-xl font-bold text-agency-dark mb-3 group-hover:text-agency-accent transition-colors font-semibold">
+                        Headless APIs and Content Structuring
+                    </h3>
+                    <p class="text-sm text-agency-slate font-light leading-relaxed">
+                        How edge CDN pre-rendering models protect overall Core Web Vitals
+                        parameters.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#121212] text-white pt-24 pb-12 px-6 md:px-12 border-t border-neutral-800"
+        aria-label="Footer Navigation">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-20 border-b border-neutral-800">
+                <!-- Branding column -->
+                <div class="lg:col-span-2">
+                    <span class="font-serif text-3xl font-bold tracking-tight text-white mb-6 block">VYRO</span>
+                    <p class="text-sm text-neutral-400 font-light max-w-xs leading-relaxed mb-8">
+                        Orchestrating premium digital interfaces and robust visual corporate identities with
+                        comprehensive system validation parameters.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" aria-label="LinkedIn Profile"
+                            class="w-10 h-10 border border-neutral-800 flex items-center justify-center hover:border-agency-accent text-neutral-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-4 h-4">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect width="4" height="12" x="2" y="9"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="X Profile"
+                            class="w-10 h-10 border border-neutral-800 flex items-center justify-center hover:border-agency-accent text-neutral-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="currentColor" class="w-4 h-4">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram Profile"
+                            class="w-10 h-10 border border-neutral-800 flex items-center justify-center hover:border-agency-accent text-neutral-400 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-4 h-4">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 Links -->
+                <div>
+                    <span
+                        class="block text-xs uppercase tracking-widest text-agency-accent font-semibold mb-6">Directory</span>
+                    <ul class="space-y-3 text-sm text-neutral-400 font-light">
+                        <li><a href="index.html#philosophy" class="hover:text-white transition-colors">Manifesto
+                                Philosophy</a></li>
+                        <li><a href="index.html#services" class="hover:text-white transition-colors">Our
+                                Capabilities</a></li>
+                        <li><a href="index.html#acoustics" class="hover:text-white transition-colors">Acoustics Lab</a>
+                        </li>
+                        <li><a href="index.html#work" class="hover:text-white transition-colors">Portfolio Archives</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 Links -->
+                <div>
+                    <span
+                        class="block text-xs uppercase tracking-widest text-agency-accent font-semibold mb-6">Estimations</span>
+                    <ul class="space-y-3 text-sm text-neutral-400 font-light">
+                        <li><a href="index.html#calculator" class="hover:text-white transition-colors">Cost Estimator
+                                Tool</a></li>
+                        <li><a href="index.html#blueprints-catalog" class="hover:text-white transition-colors">System
+                                Schemas</a></li>
+                        <li><a href="index.html#faq" class="hover:text-white transition-colors">Frequent FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 Info -->
+                <div>
+                    <span
+                        class="block text-xs uppercase tracking-widest text-agency-accent font-semibold mb-6">Governance</span>
+                    <ul class="space-y-3 text-sm text-neutral-400 font-light">
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Alliance</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Systems</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Access Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lower Footer Bar -->
+            <div
+                class="pt-8 flex flex-col md:flex-row md:justify-between md:items-center gap-6 text-xs text-neutral-500 font-mono">
+                 <div>
+                    &copy; <span id="year-target">2026</span> Vyro Creative
+                    Architecture by <a href="https://jawadiftikhar.com" target="_blank">Jawad Iftikhar</a> All system structures reserved globally.
+                </div>
+                <div class="flex gap-4">
+                    <span>Performance Rating Score: 9.9/10</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK-TO-TOP UTILITY BUTTON -->
+    <button id="back-to-top-btn"
+        class="fixed bottom-8 right-8 w-12 h-12 border border-agency-border bg-agency-card text-agency-dark shadow-xl opacity-0 translate-y-6 pointer-events-none transition-all duration-300 flex items-center justify-center focus:outline-none z-40"
+        aria-label="Return to Navigation Top">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+
+    <!-- Core & Foundation -->
+    <script src="./scripts/core.js"></script>
+    <!-- Modules & Interactions -->
+    <script src="./scripts/modules.js"></script>
+    <!-- Blog Page Logics & Integrations -->
+    <script src="./scripts/integrations.js"></script>
+
+</body>
+
+</html>
