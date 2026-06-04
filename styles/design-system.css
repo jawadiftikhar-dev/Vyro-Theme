@@ -1,0 +1,84 @@
+        :root {
+            --bg-color: #faf9f6;
+            --text-color: #121212;
+            --border-color: #eae5dc;
+            --card-color: #ffffff;
+            --slate-color: #555555;
+        }
+
+        .theme-dark {
+            --bg-color: #0e0e0e;
+            --text-color: #faf9f6;
+            --border-color: #1f1f1f;
+            --card-color: #151515;
+            --slate-color: #a3a3a3;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c5a880;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a3855e;
+        }
+
+        ::selection {
+            background-color: #c5a880;
+            color: #121212;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition:
+                opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hover-underline-link {
+            position: relative;
+        }
+
+        .hover-underline-link::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hover-underline-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        body {
+            transition:
+                background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+   
